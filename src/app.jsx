@@ -1,4 +1,5 @@
 import { useState } from "react";
+const APPROVED_DARK_LOGO = new URL('../assets/brand/camp-planner-logo-black-2026-10.png', import.meta.url).href;
 import { BarChart, Bar, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 /* ─── BRAND CONSTANTS ─────────────────────────────────────────────────────── */
@@ -101,12 +102,12 @@ function BrandSection() {
       <p style={css.label}>Logo Lockups</p>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginBottom:40 }}>
         {[
-          { bg:"#0D0D0D", label:"On Black", textColor:B.muted },
+          { bg:"#000000", label:"On Black", textColor:B.muted },
           { bg:"#FFFFFF", label:"On White", textColor:"#999" },
           { bg:"#E31E24", label:"On Brand Red", textColor:"rgba(255,255,255,0.7)" },
         ].map(({ bg, label, textColor }) => (
           <div key={label} style={{ background:bg, border:`1px solid ${B.border}`, borderRadius:8, padding:"32px 24px", textAlign:"center" }}>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12, marginBottom:12 }}>
+            {label === "On Black" ? <img src={APPROVED_DARK_LOGO} alt="Camp-Planner approved logo on black" style={{ display:"block", width:"100%", height:"auto", marginBottom:12 }} /> : <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12, marginBottom:12 }}>
               <div style={{ width:48, height:48, background: bg === "#FFFFFF" ? "#0D0D0D" : "#FFFFFF", borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 <span style={{ fontFamily:"'Barlow Condensed',sans-serif", fontWeight:900, fontSize:22, color:B.red, fontStyle:"italic" }}>Cp</span>
               </div>
@@ -115,6 +116,7 @@ function BrandSection() {
                 <div style={{ fontSize:9, fontFamily:"'Barlow Condensed',sans-serif", color: bg === "#FFFFFF" ? "#777" : "rgba(255,255,255,0.5)", letterSpacing:2, textTransform:"uppercase" }}>Plan. Organize. Inspire.</div>
               </div>
             </div>
+            }
             <div style={{ fontSize:11, color:textColor, textTransform:"uppercase", letterSpacing:2, fontWeight:700 }}>{label}</div>
           </div>
         ))}
